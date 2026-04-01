@@ -1,0 +1,1495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aswathy Mohan — Program &amp; Project Manager</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════════
+   CSS CUSTOM PROPERTIES
+   ═══════════════════════════════════════════════ */
+:root {
+  --midnight: #080e1e;
+  --navy: #0c1529;
+  --navy-light: #111d35;
+  --navy-mid: #162240;
+  --slate: #1e2d4a;
+  --gold: #c9a84c;
+  --gold-light: #dfc06a;
+  --gold-dim: rgba(201,168,76,0.15);
+  --gold-glow: rgba(201,168,76,0.08);
+  --cream: #f0ead6;
+  --white: #edf2f8;
+  --white-dim: rgba(237,242,248,0.65);
+  --white-faint: rgba(237,242,248,0.35);
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body: 'DM Sans', -apple-system, sans-serif;
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* ═══════════════════════════════════════════════
+   RESET & BASE
+   ═══════════════════════════════════════════════ */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  font-family: var(--font-body);
+  background: var(--midnight);
+  color: var(--white);
+  line-height: 1.7;
+  font-weight: 300;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+::selection { background: var(--gold); color: var(--midnight); }
+
+/* ═══════════════════════════════════════════════
+   GLOBAL UTILITIES
+   ═══════════════════════════════════════════════ */
+.container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+.section { padding: 7rem 0; position: relative; }
+.section-label {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.section-label::before {
+  content: '';
+  width: 2rem;
+  height: 1px;
+  background: var(--gold);
+}
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--white);
+  margin-bottom: 2.5rem;
+}
+.section-title em {
+  font-style: italic;
+  color: var(--gold);
+}
+
+/* Scroll-reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.9s var(--ease-out-expo), transform 0.9s var(--ease-out-expo);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+.reveal-delay-5 { transition-delay: 0.5s; }
+
+/* ═══════════════════════════════════════════════
+   NAVIGATION
+   ═══════════════════════════════════════════════ */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 1.25rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.5s var(--ease-out-expo);
+}
+.nav.scrolled {
+  background: rgba(8,14,30,0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 0.8rem 2rem;
+  border-bottom: 1px solid rgba(201,168,76,0.1);
+}
+.nav-logo {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--gold);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+}
+.nav-links {
+  display: flex;
+  gap: 2.2rem;
+  list-style: none;
+}
+.nav-links a {
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--white-dim);
+  text-decoration: none;
+  position: relative;
+  transition: color 0.3s;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--gold);
+  transition: width 0.4s var(--ease-out-expo);
+}
+.nav-links a:hover { color: var(--gold); }
+.nav-links a:hover::after { width: 100%; }
+
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 4px;
+}
+.nav-toggle span {
+  width: 24px;
+  height: 1.5px;
+  background: var(--gold);
+  transition: all 0.3s;
+}
+
+/* ═══════════════════════════════════════════════
+   HERO
+   ═══════════════════════════════════════════════ */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  background: var(--midnight);
+}
+/* Geometric accent — diagonal line */
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 15%;
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(to bottom, transparent, rgba(201,168,76,0.15) 30%, rgba(201,168,76,0.15) 70%, transparent);
+}
+/* Subtle grid texture */
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(rgba(201,168,76,0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding-top: 6rem;
+}
+.hero-overline {
+  font-size: 0.7rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+  opacity: 0;
+  animation: fadeUp 1s var(--ease-out-expo) 0.3s forwards;
+}
+.hero-name {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 8vw, 6.5rem);
+  font-weight: 700;
+  line-height: 1.0;
+  letter-spacing: -0.02em;
+  color: var(--white);
+  margin-bottom: 1.5rem;
+  opacity: 0;
+  animation: fadeUp 1s var(--ease-out-expo) 0.5s forwards;
+}
+.hero-name span {
+  display: block;
+  color: var(--gold);
+  font-style: italic;
+  font-weight: 500;
+  font-size: 0.45em;
+  letter-spacing: 0.04em;
+  margin-top: 0.3em;
+}
+.hero-tagline {
+  font-size: 1.05rem;
+  color: var(--white-dim);
+  font-weight: 300;
+  letter-spacing: 0.06em;
+  max-width: 520px;
+  margin-bottom: 2.5rem;
+  opacity: 0;
+  animation: fadeUp 1s var(--ease-out-expo) 0.7s forwards;
+}
+.hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  opacity: 0;
+  animation: fadeUp 1s var(--ease-out-expo) 0.9s forwards;
+}
+.hero-meta a, .hero-meta span {
+  font-size: 0.8rem;
+  color: var(--white-faint);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: color 0.3s;
+}
+.hero-meta a:hover { color: var(--gold); }
+.hero-meta svg { width: 14px; height: 14px; stroke: var(--gold); fill: none; stroke-width: 1.5; }
+
+/* Gold orb ambient glow */
+.hero-orb {
+  position: absolute;
+  top: 20%;
+  right: 5%;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(201,168,76,0.06) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  animation: orbFloat 8s ease-in-out infinite;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes orbFloat {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-20px, 20px) scale(1.05); }
+}
+
+/* Scroll indicator */
+.scroll-indicator {
+  position: absolute;
+  bottom: 3rem;
+  left: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--white-faint);
+  opacity: 0;
+  animation: fadeUp 1s var(--ease-out-expo) 1.2s forwards;
+}
+.scroll-line {
+  width: 1px;
+  height: 50px;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+
+/* ═══════════════════════════════════════════════
+   ABOUT SECTION
+   ═══════════════════════════════════════════════ */
+#about {
+  background: var(--navy);
+  border-top: 1px solid rgba(201,168,76,0.08);
+}
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+.about-text {
+  font-size: 1.05rem;
+  color: var(--white-dim);
+  line-height: 1.85;
+}
+.about-text strong { color: var(--gold); font-weight: 500; }
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+.stat-card {
+  background: var(--navy-light);
+  border: 1px solid rgba(201,168,76,0.08);
+  padding: 2rem 1.5rem;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.4s, transform 0.4s var(--ease-out-expo);
+}
+.stat-card:hover {
+  border-color: rgba(201,168,76,0.25);
+  transform: translateY(-3px);
+}
+.stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  background: var(--gold);
+  opacity: 0.5;
+}
+.stat-number {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: var(--gold);
+  line-height: 1.1;
+  margin-bottom: 0.5rem;
+}
+.stat-label {
+  font-size: 0.8rem;
+  color: var(--white-faint);
+  letter-spacing: 0.08em;
+  font-weight: 400;
+}
+
+/* ═══════════════════════════════════════════════
+   EXPERIENCE SECTION
+   ═══════════════════════════════════════════════ */
+#experience {
+  background: var(--midnight);
+}
+.timeline {
+  position: relative;
+  padding-left: 3rem;
+}
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(to bottom, var(--gold), rgba(201,168,76,0.1));
+}
+.timeline-item {
+  position: relative;
+  margin-bottom: 4rem;
+  padding-left: 1.5rem;
+}
+.timeline-item:last-child { margin-bottom: 0; }
+.timeline-dot {
+  position: absolute;
+  left: -3.55rem;
+  top: 0.3rem;
+  width: 10px;
+  height: 10px;
+  border: 2px solid var(--gold);
+  background: var(--midnight);
+  border-radius: 50%;
+}
+.timeline-item:first-child .timeline-dot {
+  background: var(--gold);
+  box-shadow: 0 0 12px rgba(201,168,76,0.4);
+}
+.timeline-date {
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+.timeline-role {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--white);
+  margin-bottom: 0.25rem;
+}
+.timeline-company {
+  font-size: 0.9rem;
+  color: var(--white-faint);
+  margin-bottom: 1.25rem;
+  font-style: italic;
+}
+.timeline-list {
+  list-style: none;
+  display: grid;
+  gap: 0.65rem;
+}
+.timeline-list li {
+  font-size: 0.9rem;
+  color: var(--white-dim);
+  padding-left: 1.2rem;
+  position: relative;
+  line-height: 1.65;
+}
+.timeline-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.6em;
+  width: 5px;
+  height: 1px;
+  background: var(--gold);
+}
+
+/* ═══════════════════════════════════════════════
+   PROJECTS SECTION
+   ═══════════════════════════════════════════════ */
+#projects {
+  background: var(--navy);
+  border-top: 1px solid rgba(201,168,76,0.08);
+}
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: 3rem;
+}
+.filter-btn {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.55rem 1.2rem;
+  border: 1px solid rgba(201,168,76,0.15);
+  background: transparent;
+  color: var(--white-faint);
+  cursor: pointer;
+  transition: all 0.35s var(--ease-out-expo);
+}
+.filter-btn:hover,
+.filter-btn.active {
+  background: var(--gold);
+  color: var(--midnight);
+  border-color: var(--gold);
+}
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 1.5rem;
+}
+.project-card {
+  background: var(--navy-light);
+  border: 1px solid rgba(201,168,76,0.06);
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.5s var(--ease-out-expo);
+}
+.project-card:hover {
+  border-color: rgba(201,168,76,0.2);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+}
+.project-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gold), transparent);
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+.project-card:hover::after { opacity: 1; }
+.project-domain {
+  display: inline-block;
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  background: var(--gold-dim);
+  padding: 0.3rem 0.8rem;
+  margin-bottom: 1rem;
+}
+.project-name {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--white);
+  margin-bottom: 0.75rem;
+  line-height: 1.3;
+}
+.project-brief {
+  font-size: 0.88rem;
+  color: var(--white-faint);
+  margin-bottom: 1.25rem;
+  line-height: 1.6;
+}
+.project-contributions {
+  list-style: none;
+  margin-bottom: 1.25rem;
+  display: grid;
+  gap: 0.4rem;
+}
+.project-contributions li {
+  font-size: 0.8rem;
+  color: var(--white-dim);
+  padding-left: 1rem;
+  position: relative;
+  line-height: 1.55;
+}
+.project-contributions li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 4px;
+  height: 1px;
+  background: var(--gold);
+}
+.project-impact {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(201,168,76,0.08);
+}
+.impact-tag {
+  font-size: 0.68rem;
+  font-weight: 500;
+  color: var(--gold-light);
+  background: rgba(201,168,76,0.07);
+  padding: 0.3rem 0.7rem;
+  letter-spacing: 0.02em;
+}
+
+/* Card hidden state for filter */
+.project-card.hidden {
+  display: none;
+}
+
+/* ═══════════════════════════════════════════════
+   SKILLS SECTION
+   ═══════════════════════════════════════════════ */
+#skills {
+  background: var(--midnight);
+}
+.skills-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+}
+.skill-group {
+  padding: 1.5rem 0;
+  border-top: 1px solid rgba(201,168,76,0.1);
+}
+.skill-group-title {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--gold);
+  margin-bottom: 1rem;
+}
+.skill-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+.skill-pill {
+  font-size: 0.78rem;
+  color: var(--white-dim);
+  background: var(--navy-light);
+  border: 1px solid rgba(201,168,76,0.06);
+  padding: 0.4rem 0.9rem;
+  transition: all 0.3s;
+}
+.skill-pill:hover {
+  border-color: rgba(201,168,76,0.3);
+  color: var(--white);
+}
+
+/* ═══════════════════════════════════════════════
+   EDUCATION SECTION
+   ═══════════════════════════════════════════════ */
+#education {
+  background: var(--navy);
+  border-top: 1px solid rgba(201,168,76,0.08);
+}
+.education-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+.edu-card {
+  background: var(--navy-light);
+  border: 1px solid rgba(201,168,76,0.08);
+  padding: 2.5rem;
+  position: relative;
+}
+.edu-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 2.5rem;
+  width: 40px;
+  height: 2px;
+  background: var(--gold);
+}
+.edu-year {
+  font-size: 0.7rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 500;
+  margin-bottom: 0.75rem;
+}
+.edu-degree {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: var(--white);
+  margin-bottom: 0.5rem;
+  line-height: 1.3;
+}
+.edu-institution {
+  font-size: 0.9rem;
+  color: var(--white-faint);
+  font-style: italic;
+}
+.edu-detail {
+  font-size: 0.85rem;
+  color: var(--white-dim);
+  margin-top: 0.5rem;
+}
+
+/* ═══════════════════════════════════════════════
+   CONTACT SECTION
+   ═══════════════════════════════════════════════ */
+#contact {
+  background: var(--midnight);
+}
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+}
+.contact-info { padding-top: 0.5rem; }
+.contact-text {
+  font-size: 1.05rem;
+  color: var(--white-dim);
+  line-height: 1.85;
+  margin-bottom: 2.5rem;
+}
+.contact-links {
+  list-style: none;
+  display: grid;
+  gap: 1.2rem;
+}
+.contact-links li a {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  text-decoration: none;
+  color: var(--white-dim);
+  font-size: 0.92rem;
+  transition: color 0.3s;
+}
+.contact-links li a:hover { color: var(--gold); }
+.contact-links svg { width: 18px; height: 18px; stroke: var(--gold); fill: none; stroke-width: 1.5; flex-shrink: 0; }
+.contact-form {
+  display: grid;
+  gap: 1.25rem;
+}
+.form-group {
+  position: relative;
+}
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: var(--white);
+  background: var(--navy);
+  border: 1px solid rgba(201,168,76,0.12);
+  padding: 1rem 1.25rem;
+  outline: none;
+  transition: border-color 0.4s;
+}
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: var(--gold);
+}
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: var(--white-faint);
+  font-weight: 300;
+}
+.form-group textarea {
+  min-height: 140px;
+  resize: vertical;
+}
+.form-submit {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--midnight);
+  background: var(--gold);
+  border: none;
+  padding: 1.1rem 2.5rem;
+  cursor: pointer;
+  transition: all 0.35s var(--ease-out-expo);
+  justify-self: start;
+}
+.form-submit:hover {
+  background: var(--gold-light);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(201,168,76,0.25);
+}
+
+/* ═══════════════════════════════════════════════
+   FOOTER
+   ═══════════════════════════════════════════════ */
+.footer {
+  background: var(--midnight);
+  border-top: 1px solid rgba(201,168,76,0.08);
+  padding: 2.5rem 0;
+  text-align: center;
+}
+.footer p {
+  font-size: 0.75rem;
+  color: var(--white-faint);
+  letter-spacing: 0.1em;
+}
+
+/* ═══════════════════════════════════════════════
+   RESPONSIVE
+   ═══════════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .about-grid, .contact-grid { gap: 3rem; }
+  .projects-grid { grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
+}
+
+@media (max-width: 768px) {
+  .container { padding: 0 1.25rem; }
+  .section { padding: 4.5rem 0; }
+
+  /* Navigation */
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 70%;
+    max-width: 320px;
+    height: 100vh;
+    background: var(--navy);
+    border-left: 1px solid rgba(201,168,76,0.1);
+    flex-direction: column;
+    padding: 5rem 2rem 2rem;
+    gap: 1.5rem;
+    transition: right 0.5s var(--ease-out-expo);
+  }
+  .nav-links.open { right: 0; }
+  .nav-toggle { display: flex; z-index: 1001; }
+  .nav-toggle.open span:nth-child(1) { transform: rotate(45deg) translate(4px, 4px); }
+  .nav-toggle.open span:nth-child(2) { opacity: 0; }
+  .nav-toggle.open span:nth-child(3) { transform: rotate(-45deg) translate(4px, -4px); }
+
+  /* Grids to single column */
+  .about-grid,
+  .education-grid,
+  .contact-grid,
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+  .stats-grid { grid-template-columns: 1fr 1fr; }
+  .projects-grid { grid-template-columns: 1fr; }
+
+  .hero-name { font-size: clamp(2.5rem, 10vw, 4rem); }
+  .hero-orb { width: 250px; height: 250px; }
+  .scroll-indicator { display: none; }
+  .timeline { padding-left: 2rem; }
+  .timeline-dot { left: -2.55rem; }
+  .filter-bar { gap: 0.4rem; }
+  .filter-btn { font-size: 0.65rem; padding: 0.45rem 0.9rem; }
+}
+
+@media (max-width: 480px) {
+  .stats-grid { grid-template-columns: 1fr; }
+  .hero-meta { flex-direction: column; gap: 0.8rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════ NAVIGATION ═══════════ -->
+<nav class="nav" id="nav">
+  <a href="#" class="nav-logo">A.M.</a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about" onclick="closeNav()">About</a></li>
+    <li><a href="#experience" onclick="closeNav()">Experience</a></li>
+    <li><a href="#projects" onclick="closeNav()">Projects</a></li>
+    <li><a href="#skills" onclick="closeNav()">Skills</a></li>
+    <li><a href="#education" onclick="closeNav()">Education</a></li>
+    <li><a href="#contact" onclick="closeNav()">Contact</a></li>
+  </ul>
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ═══════════ HERO ═══════════ -->
+<section class="hero" id="hero">
+  <div class="hero-orb"></div>
+  <div class="container hero-content">
+    <p class="hero-overline">Program &amp; Project Management</p>
+    <h1 class="hero-name">
+      Aswathy Mohan
+      <span>PMP&reg; Certified &mdash; Dubai, UAE</span>
+    </h1>
+    <p class="hero-tagline">Delivering digital transformation across AI &amp; GenAI Platforms, SaaS, FinTech, and IoT ecosystems.</p>
+    <div class="hero-meta">
+      <a href="tel:+971564676026">
+        <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+        +971-564-676026
+      </a>
+      <a href="mailto:aswathymohan819@gmail.com">
+        <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        aswathymohan819@gmail.com
+      </a>
+      <a href="https://www.linkedin.com/in/aswathy-mohan-2ba0ba174" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        LinkedIn
+      </a>
+      <span>
+        <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Al-Hamriya, Dubai
+      </span>
+    </div>
+  </div>
+  <div class="scroll-indicator">
+    <div class="scroll-line"></div>
+    Scroll
+  </div>
+</section>
+
+<!-- ═══════════ ABOUT ═══════════ -->
+<section class="section" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div>
+        <div class="section-label reveal">About</div>
+        <h2 class="section-title reveal reveal-delay-1">Driving <em>Digital Transformation</em> at Scale</h2>
+        <p class="about-text reveal reveal-delay-2">
+          <strong>PMP&reg; Certified Program/Project Manager</strong> with 6+ years of experience delivering end-to-end digital transformation programs across AI, GenAI, Enterprise Platforms, SaaS, IoT, and FinTech ecosystems. Proven track record of leading cross-functional teams of 20+ members, managing portfolios exceeding $500K, and driving measurable business outcomes across 10+ concurrent enterprise initiatives. Experienced in implementing QA and development process automation, integrating Generative AI solutions, and governing multi-vendor delivery across complex technical landscapes. Adept at navigating complex stakeholder landscapes and ensuring projects are delivered on time, within scope, and to quality standards.
+        </p>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-card reveal reveal-delay-1">
+          <div class="stat-number">6+</div>
+          <div class="stat-label">Years Experience</div>
+        </div>
+        <div class="stat-card reveal reveal-delay-2">
+          <div class="stat-number">10+</div>
+          <div class="stat-label">Programs Delivered</div>
+        </div>
+        <div class="stat-card reveal reveal-delay-3">
+          <div class="stat-number">$500K+</div>
+          <div class="stat-label">Portfolio Managed</div>
+        </div>
+        <div class="stat-card reveal reveal-delay-4">
+          <div class="stat-number">20+</div>
+          <div class="stat-label">Team Members Led</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ EXPERIENCE ═══════════ -->
+<section class="section" id="experience">
+  <div class="container">
+    <div class="section-label reveal">Experience</div>
+    <h2 class="section-title reveal reveal-delay-1">Professional <em>Journey</em></h2>
+    <div class="timeline">
+      <!-- Role 1 -->
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">April 2022 &mdash; Present</div>
+        <h3 class="timeline-role">Program / Project Manager</h3>
+        <p class="timeline-company">Innobayt Innovative Solutions LLC &mdash; Dubai, UAE</p>
+        <ul class="timeline-list">
+          <li>Directed end-to-end program governance for 10+ concurrent digital initiatives with cross-functional teams of 20+ members spanning engineering, AI, DevOps, UI/UX, and infrastructure</li>
+          <li>Managed portfolio budgets exceeding $500K+, ensuring financial control, resource optimization, and margin alignment</li>
+          <li>Implemented risk mitigation frameworks reducing delivery escalations and schedule slippages by 25%</li>
+          <li>Drove Agile practices (Scrum, Kanban, Hybrid) improving delivery velocity by 30%</li>
+          <li>Championed QA automation frameworks and development process automation, reducing manual testing effort and accelerating release cycles</li>
+          <li>Drove integration of Generative AI (GenAI) capabilities into enterprise platforms, overseeing LLM configuration, prompt engineering workflows, and AI governance controls</li>
+          <li>Led cross-vendor collaboration across AWS, Azure, telecom providers, and enterprise payment gateway partners; coordinated IoT hardware deployments including RFID, LED alert panels, and weather monitoring sensors</li>
+        </ul>
+      </div>
+      <!-- Role 2 -->
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">August 2021 &mdash; April 2022</div>
+        <h3 class="timeline-role">Automation Test Engineer</h3>
+        <p class="timeline-company">Tavant Technologies &mdash; CNBC Web Platform, Bangalore, India</p>
+        <ul class="timeline-list">
+          <li>Designed and executed test strategies and test design documents for backend and frontend systems in Agile environments</li>
+          <li>Collaborated with Agile/SCRUM development teams to improve QA coverage, release predictability, and production quality standards</li>
+        </ul>
+      </div>
+      <!-- Role 3 -->
+      <div class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">February 2020 &mdash; August 2021</div>
+        <h3 class="timeline-role">Automation Test Engineer</h3>
+        <p class="timeline-company">Duru Corporation &mdash; LG Soft India (AIVI-2), Bangalore, India</p>
+        <ul class="timeline-list">
+          <li>Developed and executed automated test scripts in Python, improving regression coverage by 40% for LG's AIVI-2 in-vehicle infotainment system</li>
+          <li>Coordinated defect analysis with cross-functional development teams to ensure compliance with quality standards and reduce resolution cycle times</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ PROJECTS ═══════════ -->
+<section class="section" id="projects">
+  <div class="container">
+    <div class="section-label reveal">Portfolio</div>
+    <h2 class="section-title reveal reveal-delay-1">Key <em>Projects</em> Delivered</h2>
+
+    <div class="filter-bar reveal reveal-delay-2">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="ai">AI / GenAI</button>
+      <button class="filter-btn" data-filter="iot">IoT / Industrial</button>
+      <button class="filter-btn" data-filter="fintech">FinTech / Web3</button>
+      <button class="filter-btn" data-filter="health">Healthcare</button>
+      <button class="filter-btn" data-filter="saas">SaaS / E-commerce</button>
+    </div>
+
+    <div class="projects-grid" id="projectsGrid">
+
+      <!-- 1. Velyana -->
+      <div class="project-card reveal" data-category="ai">
+        <span class="project-domain">AI Security / Enterprise SaaS</span>
+        <h3 class="project-name">Velyana &mdash; AI Governance &amp; Guardrail Platform</h3>
+        <p class="project-brief">Enterprise AI security and governance platform protecting AI applications from attacks with real-time guardrails and policy enforcement.</p>
+        <ul class="project-contributions">
+          <li>Led delivery of multi-module AI security platform as middleware between users and AI systems</li>
+          <li>Built real-time guardrail engine for prompt injection, PII detection, and content moderation</li>
+          <li>Developed red teaming engine with 28 adversarial attack probes</li>
+          <li>Implemented AI governance layer with Azure AD, AI app discovery, and policy management</li>
+        </ul>
+        <div class="project-impact">
+          <span class="impact-tag">~80% AI risk reduction</span>
+          <span class="impact-tag">~60% compliance improvement</span>
+        </div>
+      </div>
+
+      <!-- 2. Tecnimont HSE -->
+      <div class="project-card reveal" data-category="iot">
+        <span class="project-domain">Industrial IoT</span>
+        <h3 class="project-name">Tecnimont HSE &mdash; IoT Safety System</h3>
+        <p class="project-brief">Industrial-grade IoT safety and monitoring system for personnel tracking at mustering points with real-time environmental alerts.</p>
+        <ul class="project-contributions">
+          <li>Coordinated on-site deployment of RFID tracking, LED alert systems, horn speakers, and weather sensors</li>
+          <li>Designed mustering logic including badge scanning, duplicate handling, and real-time headcount tracking</li>
+          <li>Integrated hardware systems with centralized dashboards for live monitoring</li>
+          <li>Led stakeholder coordination for approvals, testing cycles, and compliance validation</li>
+        </ul>
+        <div class="project-impact">
+          <span class="impact-tag">~40% faster incident response</span>
+          <span class="impact-tag">~30% tracking accuracy</span>
+        </div>
+      </div>
+
+      <!-- 3. Mining Farm -->
+      <div class="project-card reveal" data-category="fintech">
+        <span class="project-domain">Web3 / FinTech</span>
+        <h3 class="project-name">Mining Farm Dubai &mdash; Crypto Mining Platform</h3>
+        <p class="project-brief">Crypto mining management platform enabling users to monitor miners, track earnings, and receive automated payouts for KASPA and Bitcoin.</p>
+        <ul class="project-contributions">
+          <li>Built real-time miner tracking and earnings system</li>
+          <li>Designed automated payout engine with scheduled distributions</li>
+          <li>Implemented HubSpot CRM integration for lead tracking and customer lifecycle</li>
+          <li>Designed crypto payment and wallet flows (Coinbase Commerce, OpenNode)</li>
+        </ul>
+        <div class="project-impact">
+          <span class="impact-tag">~25% user conversion</span>
+          <span class="impact-tag">~30% retention improvement</span>
+        </div>
+      </div>
+
+      <!-- 4. Aster POS -->
+      <div class="project-card reveal" data-category="ai health">
+        <span class="project-domain">Healthcare AI</span>
+        <h3 class="project-name">Aster POS &mdash; AI Recommendation Engine</h3>
+        <p class="project-brief">AI-driven recommendation engine suggesting relevant non-pharma products based on diagnosis, history, and clinical rules.</p>
+        <ul class="project-contributions">
+          <li>Designed rule and scoring-based recommendation engine</li>
+          <li>Integrated with Azure Event Hub and Databricks pipeline</li>
+          <li>Implemented explainable recommendations with reasoning</li>
+        </ul>
+        <div class="project-impact">
+          <span class="impact-tag">~40% recommendation relevance</span>
+          <span class="impact-tag">~20% cross-sell conversion</span>
+        </div>
+      </div>
+
+      <!-- 5. Desert Coach -->
+      <div class="project-card reveal" data-category="ai">
+        <span class="project-domain">Conversational AI</span>
+        <h3 class="project-name">Desert Coach &mdash; AI Voice Agent</h3>
+        <p class="project-brief">AI-powered voice assistant handling airline crew queries, validating trips, and automating dispatch communication.</p>
+        <ul class="project-contributions">
+          <li>Built conversational AI system with real-time trip validation</li>
+          <li>Integrated telephony systems (Twilio, Vonage)</li>
+          <li>Designed escalation and call routing logic</li>
+        </ul>
+        <div class="project-impact">
+          <span class="impact-tag">~35% less manual dispatch</span>
+          <span class="impact-tag">~30% faster response</span>
+        </div>
+      </div>
+
+      <!-- 6. SafeFit Studios -->
+      <div class="project-card reveal" data-category="saas health">
+        <span class="project-domain">SaaS / Fitness</span>
+        <h3 class="project-name">SafeFit Studios &mdash; Gym Management Platform</h3>
+        <p class="project-brief">Comprehensive gym management system with multiple portals for operations, bookings, trainers, and customer engagement.</p>
+        <ul class="project-contributions">
+          <li>Led migration to modern tech stack (Node.js, React, Flutter)</li>
+          <li>Designed booking, trainer, and gym management modules</li>
+          <li>Integrated payment systems and analytics dashboards</li>
+        </ul>
+        <div class="project-impact">
+          <span class="impact-tag">~30% operational efficiency</span>
+          <span class="impact-tag">~20% engagement increase</span>
+        </div>
+      </div>
+
+      <!-- 7. Fitburn App -->
+      <div class="project-card reveal" data-category="fintech">
+        <span class="project-domain">WEB3</span>
+        <h3 class="project-name">Fitburn &mdash; Burn-to-Earn Mobile App</h3>
+        <p class="project-brief">Fitness application rewarding users with crypto tokens based on workout performance using heart rate tracking.</p>
+        <ul class="project-contributions">
+          <li>Built heart rate-based reward system linked to blockchain incentives</li>
+          <li>Integrated crypto reward mechanism using CAL and TEA tokens</li>
+          <li>Integrated wearable device connectivity for real-time fitness monitoring</li>
+        </ul>
+        <div class="project-impact">
+          <span class="impact-tag">~25% user engagement</span>
+          <span class="impact-tag">~20% workout retention</span>
+        </div>
+      </div>
+
+      <!-- 8. Fitburn E-commerce -->
+      <div class="project-card reveal" data-category="saas">
+        <span class="project-domain">E-commerce</span>
+        <h3 class="project-name">Fitburn &mdash; E-commerce Platform</h3>
+        <p class="project-brief">Full-scale e-commerce platform for fitness products with integrated crypto payment options and inventory management.</p>
+        <ul class="project-contributions">
+          <li>Developed end-to-end e-commerce (browse, cart, checkout, order management)</li>
+          <li>Integrated crypto payment support (SOL, ETH, TEA token)</li>
+          <li>Designed product management and stock/inventory system</li>
+        </ul>
+        <div class="project-impact">
+          <span class="impact-tag">~20% conversion rate</span>
+          <span class="impact-tag">~30% inventory efficiency</span>
+        </div>
+      </div>
+
+      <!-- 9. Blue Tree Clinic -->
+      <div class="project-card reveal" data-category="health">
+        <span class="project-domain">Healthcare</span>
+        <h3 class="project-name">Blue Tree Clinic &mdash; Healthcare Platform</h3>
+        <p class="project-brief">Clinic management and appointment booking system streamlining patient scheduling and doctor availability.</p>
+        <ul class="project-contributions">
+          <li>Designed doctor scheduling and consultation workflows</li>
+          <li>Planned integrations for WhatsApp and telephony systems</li>
+        </ul>
+        <div class="project-impact">
+          <span class="impact-tag">Improved patient booking experience</span>
+        </div>
+      </div>
+
+      <!-- 10. TOTAL Energies -->
+      <div class="project-card reveal" data-category="iot">
+        <span class="project-domain">Industrial Automation</span>
+        <h3 class="project-name">TOTAL Energies &mdash; Automation Solution</h3>
+        <p class="project-brief">Industrial automation system for production and quality workflows with real-time validation.</p>
+        <ul class="project-contributions">
+          <li>Delivered automation for labeling and conveyor systems</li>
+          <li>Integrated scanners for real-time validation and QA tracking</li>
+          <li>Coordinated between hardware systems and enterprise software platforms</li>
+        </ul>
+        <div class="project-impact">
+          <span class="impact-tag">~30% production efficiency</span>
+          <span class="impact-tag">~40% fewer manual errors</span>
+        </div>
+      </div>
+
+      <!-- 11. Demeter -->
+      <div class="project-card reveal" data-category="fintech">
+        <span class="project-domain">FinTech</span>
+        <h3 class="project-name">Demeter &mdash; Investor Portal</h3>
+        <p class="project-brief">Investor-facing platform for financial insights, portfolio tracking, and trading-related workflows.</p>
+        <ul class="project-contributions">
+          <li>Built secure authentication and user dashboards</li>
+          <li>Supported trading-related workflows and reporting features</li>
+          <li>Managed data handling and financial visibility features</li>
+        </ul>
+        <div class="project-impact">
+          <span class="impact-tag">~20% user engagement</span>
+          <span class="impact-tag">~30% reporting efficiency</span>
+        </div>
+      </div>
+
+      <!-- 12. Rawafid -->
+      <div class="project-card reveal" data-category="fintech">
+        <span class="project-domain">FinTech</span>
+        <h3 class="project-name">Rawafid &mdash; Crowdsourced Funding Platform</h3>
+        <p class="project-brief">Crowdfunding platform enabling users to invest in opportunities through a digital portal.</p>
+        <ul class="project-contributions">
+          <li>Defined user journeys for investors and campaign creators</li>
+          <li>Designed platform workflows for funding, tracking, and reporting</li>
+          <li>Supported financial data handling and compliance considerations</li>
+        </ul>
+        <div class="project-impact">
+          <span class="impact-tag">~20% funding participation</span>
+        </div>
+      </div>
+
+      <!-- 13. Ebonite -->
+      <div class="project-card reveal" data-category="saas">
+        <span class="project-domain">Construction SaaS</span>
+        <h3 class="project-name">Ebonite &mdash; Fit-Out Project Management Tool</h3>
+        <p class="project-brief">Project management platform for construction and fit-out operations with dashboards and workflow management.</p>
+        <ul class="project-contributions">
+          <li>Designed task tracking, reporting, and workflow management modules</li>
+          <li>Built dashboards for project visibility and execution tracking</li>
+          <li>Supported operational planning and coordination features</li>
+        </ul>
+        <div class="project-impact">
+          <span class="impact-tag">~30% tracking efficiency</span>
+          <span class="impact-tag">~25% faster reporting</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ SKILLS ═══════════ -->
+<section class="section" id="skills">
+  <div class="container">
+    <div class="section-label reveal">Expertise</div>
+    <h2 class="section-title reveal reveal-delay-1">Core <em>Competencies</em></h2>
+    <div class="skills-grid">
+      <div class="skill-group reveal">
+        <h3 class="skill-group-title">Program &amp; Portfolio Governance</h3>
+        <div class="skill-pills">
+          <span class="skill-pill">Multi-stream Roadmaps</span>
+          <span class="skill-pill">RAID Logs</span>
+          <span class="skill-pill">Baselines</span>
+          <span class="skill-pill">Release Planning</span>
+          <span class="skill-pill">Steering Committees</span>
+        </div>
+      </div>
+      <div class="skill-group reveal">
+        <h3 class="skill-group-title">Managed Service Delivery</h3>
+        <div class="skill-pills">
+          <span class="skill-pill">SLA &amp; KPI Governance</span>
+          <span class="skill-pill">Service Transition</span>
+          <span class="skill-pill">Operations</span>
+          <span class="skill-pill">Continuous Service Improvement</span>
+        </div>
+      </div>
+      <div class="skill-group reveal">
+        <h3 class="skill-group-title">Project Planning &amp; Delivery</h3>
+        <div class="skill-pills">
+          <span class="skill-pill">Scope Management</span>
+          <span class="skill-pill">WBS</span>
+          <span class="skill-pill">Milestone Tracking</span>
+          <span class="skill-pill">UAT Governance</span>
+          <span class="skill-pill">Change Control (CCB)</span>
+        </div>
+      </div>
+      <div class="skill-group reveal">
+        <h3 class="skill-group-title">Agile / Hybrid Delivery</h3>
+        <div class="skill-pills">
+          <span class="skill-pill">Scrum</span>
+          <span class="skill-pill">Kanban</span>
+          <span class="skill-pill">Sprint Planning</span>
+          <span class="skill-pill">Release Management</span>
+          <span class="skill-pill">OKRs</span>
+          <span class="skill-pill">KPIs</span>
+        </div>
+      </div>
+      <div class="skill-group reveal">
+        <h3 class="skill-group-title">AI &amp; GenAI Integration</h3>
+        <div class="skill-pills">
+          <span class="skill-pill">LLM Platform Delivery</span>
+          <span class="skill-pill">Generative AI Implementation</span>
+          <span class="skill-pill">AI Governance</span>
+          <span class="skill-pill">Prompt Engineering</span>
+        </div>
+      </div>
+      <div class="skill-group reveal">
+        <h3 class="skill-group-title">Automation</h3>
+        <div class="skill-pills">
+          <span class="skill-pill">QA Automation Frameworks</span>
+          <span class="skill-pill">Development Process Automation</span>
+          <span class="skill-pill">CI/CD Pipeline Oversight</span>
+        </div>
+      </div>
+      <div class="skill-group reveal">
+        <h3 class="skill-group-title">Budget &amp; Stakeholder Management</h3>
+        <div class="skill-pills">
+          <span class="skill-pill">$500K+ Portfolio</span>
+          <span class="skill-pill">Cost Control</span>
+          <span class="skill-pill">Global Stakeholder Engagement</span>
+          <span class="skill-pill">Executive Reporting</span>
+        </div>
+      </div>
+      <div class="skill-group reveal">
+        <h3 class="skill-group-title">Tools &amp; Platforms</h3>
+        <div class="skill-pills">
+          <span class="skill-pill">JIRA</span>
+          <span class="skill-pill">ServiceNow</span>
+          <span class="skill-pill">Azure DevOps</span>
+          <span class="skill-pill">Confluence</span>
+          <span class="skill-pill">Azure (Event Hub, Databricks, Blob, AD)</span>
+          <span class="skill-pill">OpenAI</span>
+          <span class="skill-pill">Anthropic</span>
+          <span class="skill-pill">Grok</span>
+        </div>
+      </div>
+      <div class="skill-group reveal" style="grid-column: 1 / -1;">
+        <h3 class="skill-group-title">Key Markets</h3>
+        <div class="skill-pills">
+          <span class="skill-pill">Energy</span>
+          <span class="skill-pill">Healthcare</span>
+          <span class="skill-pill">FinTech</span>
+          <span class="skill-pill">Retail</span>
+          <span class="skill-pill">Industrial</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ EDUCATION ═══════════ -->
+<section class="section" id="education">
+  <div class="container">
+    <div class="section-label reveal">Credentials</div>
+    <h2 class="section-title reveal reveal-delay-1">Education &amp; <em>Certifications</em></h2>
+    <div class="education-grid">
+      <div class="edu-card reveal">
+        <div class="edu-year">July 2020</div>
+        <h3 class="edu-degree">Bachelor of Computer Applications</h3>
+        <p class="edu-institution">Garden City University, Bangalore, India</p>
+        <p class="edu-detail">CGPA: 9.34 / 10</p>
+      </div>
+      <div class="edu-card reveal reveal-delay-1">
+        <div class="edu-year">2025</div>
+        <h3 class="edu-degree">Project Management Professional (PMP&reg;)</h3>
+        <p class="edu-institution">Project Management Institute</p>
+        <p class="edu-detail">PMI Certification</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ CONTACT ═══════════ -->
+<section class="section" id="contact">
+  <div class="container">
+    <div class="section-label reveal">Connect</div>
+    <h2 class="section-title reveal reveal-delay-1">Get in <em>Touch</em></h2>
+    <div class="contact-grid">
+      <div class="contact-info reveal reveal-delay-2">
+        <p class="contact-text">Open to discussing program management opportunities, strategic partnerships, and digital transformation initiatives. Let's connect and explore how we can drive impact together.</p>
+        <ul class="contact-links">
+          <li>
+            <a href="mailto:aswathymohan819@gmail.com">
+              <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              aswathymohan819@gmail.com
+            </a>
+          </li>
+          <li>
+            <a href="tel:+971564676026">
+              <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+              +971-564-676026
+            </a>
+          </li>
+          <li>
+            <a href="https://www.linkedin.com/in/aswathy-mohan-2ba0ba174" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+              LinkedIn
+            </a>
+          </li>
+          <li>
+            <a href="#">
+              <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Al-Hamriya, Dubai, UAE
+            </a>
+          </li>
+        </ul>
+      </div>
+      <form class="contact-form reveal reveal-delay-3" id="contactForm" action="https://formspree.io/f/mqeglbwz" method="POST">
+        <div class="form-group">
+          <input type="text" name="name" placeholder="Your Name" required>
+        </div>
+        <div class="form-group">
+          <input type="email" name="email" placeholder="Your Email" required>
+        </div>
+        <div class="form-group">
+          <textarea name="message" placeholder="Your Message" required></textarea>
+        </div>
+        <button type="submit" class="form-submit">Send Message</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ FOOTER ═══════════ -->
+<footer class="footer">
+  <div class="container">
+    <p>&copy; 2026 Aswathy Mohan. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+/* ═══════════════════════════════════════════════
+   SCROLL REVEAL — Intersection Observer
+   ═══════════════════════════════════════════════ */
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+/* ═══════════════════════════════════════════════
+   STICKY NAV
+   ═══════════════════════════════════════════════ */
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+});
+
+/* ═══════════════════════════════════════════════
+   MOBILE NAV TOGGLE
+   ═══════════════════════════════════════════════ */
+const navToggle = document.getElementById('navToggle');
+const navLinks = document.getElementById('navLinks');
+
+navToggle.addEventListener('click', () => {
+  navToggle.classList.toggle('open');
+  navLinks.classList.toggle('open');
+});
+
+function closeNav() {
+  navToggle.classList.remove('open');
+  navLinks.classList.remove('open');
+}
+
+/* ═══════════════════════════════════════════════
+   PROJECT FILTER
+   ═══════════════════════════════════════════════ */
+const filterBtns = document.querySelectorAll('.filter-btn');
+const projectCards = document.querySelectorAll('.project-card');
+
+filterBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    filterBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    const filter = btn.dataset.filter;
+
+    projectCards.forEach(card => {
+      if (filter === 'all') {
+        card.classList.remove('hidden');
+      } else {
+        const categories = card.dataset.category.split(' ');
+        card.classList.toggle('hidden', !categories.includes(filter));
+      }
+    });
+  });
+});
+
+/* ═══════════════════════════════════════════════
+   CONTACT FORM (Formspree AJAX)
+   ═══════════════════════════════════════════════ */
+const contactForm = document.getElementById('contactForm');
+contactForm.addEventListener('submit', function(e) {
+  e.preventDefault();
+  const btn = contactForm.querySelector('.form-submit');
+  btn.textContent = 'Sending...';
+  btn.disabled = true;
+
+  fetch(contactForm.action, {
+    method: 'POST',
+    body: new FormData(contactForm),
+    headers: { 'Accept': 'application/json' }
+  }).then(response => {
+    if (response.ok) {
+      btn.textContent = 'Message Sent!';
+      btn.style.background = '#4ade80';
+      contactForm.reset();
+      setTimeout(() => {
+        btn.textContent = 'Send Message';
+        btn.style.background = '';
+        btn.disabled = false;
+      }, 2500);
+    } else {
+      btn.textContent = 'Failed — Try Again';
+      btn.style.background = '#ef4444';
+      btn.disabled = false;
+      setTimeout(() => {
+        btn.textContent = 'Send Message';
+        btn.style.background = '';
+      }, 2500);
+    }
+  }).catch(() => {
+    btn.textContent = 'Failed — Try Again';
+    btn.style.background = '#ef4444';
+    btn.disabled = false;
+    setTimeout(() => {
+      btn.textContent = 'Send Message';
+      btn.style.background = '';
+    }, 2500);
+  });
+});
+</script>
+</body>
+</html>
